@@ -5,7 +5,7 @@ dofile(vrjLua.findInModelSearchPath([[scripts/simpleLights.lua]]))
 dofile(vrjLua.findInModelSearchPath([[scripts/Drawing.lua]]))
 
 local function enableDrawing()
-	mydraw = DrawingTool{}
+	mydraw = DrawingTool{metal=true}
 	mydraw.metal = false
 	mydraw:startDrawing()
 end
