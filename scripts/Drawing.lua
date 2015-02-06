@@ -33,7 +33,7 @@ local getRainbowColor = coroutine.wrap(function()
 end)
 
 function DrawingIndex:updateMarker()
-	self.marker.Child[1] = SphereMarker{radius = .1, color = self.color}
+	self.marker.Child[1] = SphereMarker{radius = .01, color = self.color}
 end
 
 function DrawingIndex:createOSG()
@@ -166,7 +166,7 @@ DrawingTool = function(draw)
 		end
 		draw.drawbutton = draw.drawbutton or gadget.DigitalInterface("WMButtonB")
 		draw.clearbutton = draw.clearbutton or gadget.DigitalInterface("WMButtonHome")
-		draw.changeColor_button = draw.changeColor_button or gadget.DigitalInterface("VJButtonPlus")
+		draw.changeColor_button = draw.changeColor_button or gadget.DigitalInterface("WMButtonPlus")
 	else
 		if draw.drawbutton == nil and draw.clearbutton == nil and draw.changeColor_button == nil then
 			print("Using default workstation devices")
