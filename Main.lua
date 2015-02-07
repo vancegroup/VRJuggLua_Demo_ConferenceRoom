@@ -1,10 +1,10 @@
-require("Actions")
-require("getScriptFilename")
-vrjLua.appendToModelSearchPath(getScriptFilename())
-dofile(vrjLua.findInModelSearchPath([[scripts/simpleLights.lua]]))
-dofile(vrjLua.findInModelSearchPath([[scripts/Drawing.lua]]))
+require("AddAppDirectory")
+AddAppDirectory()
 
-dofile(vrjLua.findInModelSearchPath[[scripts/Navigation.lua]])
+runfile[[scripts/simpleLights.lua]]
+runfile[[scripts/Drawing.lua]]
+runfile[[scripts/Navigation.lua]]
+
 myNav = FlyOrWalkNavigation{
 	start = "walking",
 	switchButton = gadget.DigitalInterface("WMButtonPlus"),
@@ -24,18 +24,27 @@ local RoomModel = Transform{
 	Model([[models/room.ive]])
 }
 
-local scale = 100
-local Skybox = Transform{
-	scale = scale,
-	position = {-5*scale,-5*scale,5*scale},
-	Transform{
-		Model([[models/skybox.ive]]),
+local function CenterTransformAtPosition(xform, pos)
+	local bound = xform:getBound()
+	return Transform{
+		position = -bound:center() + Vec(unpack(pos)),
+		xform,
 	}
+end
+
+local skydome = Transform{
+	scale = .01,
+	position = {0,-5,0},
+	Model[[models/skydome.ive]],
 }
 
+local ground = CenterTransformAtPosition(Transform{
+	scale = 10,
+	Model[[models/grass.ive]],
+},{0,-.09,0})
 
 enableDrawing()
 
-RelativeTo.World:addChild(Skybox)
-
+RelativeTo.World:addChild(skydome)
+RelativeTo.World:addChild(ground)
 RelativeTo.World:addChild(RoomModel)
