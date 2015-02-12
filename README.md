@@ -1,4 +1,4 @@
-VRJuggLua_Demo_ConferenceRoom
+VRJuggLua_Demo_Office
 =============================
 
 A simple demo script for VRJuggLua. Has Drawing.
