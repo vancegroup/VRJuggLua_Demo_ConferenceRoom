@@ -27,13 +27,13 @@ end
 function doLight3()
 	l4 = osg.Light()
 	l4:setLightNum(1)
-	l4:setAmbient(osg.Vec4(.2, .2, .2, 1.0))
+	l4:setAmbient(osg.Vec4(.6, .6, .4, 1.0))
 	ls4 = osg.LightSource()
 	ls4:setLight(l4)
 	ls4:setLocalStateSetModes(osg.StateAttribute.Values.ON)
 	ss:setAssociatedModes(l4, osg.StateAttribute.Values.ON)
 	RelativeTo.World:addChild(ls4)
-	l4:setPosition(osg.Vec4(-15, 5, -2, 1.0))
+	l4:setPosition(osg.Vec4(-15, 10, -10, 1.0))
 end
 
 doLight1()

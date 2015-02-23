@@ -33,18 +33,25 @@ local function CenterTransformAtPosition(xform, pos)
 end
 
 local skydome = Transform{
-	scale = .01,
+	scale = .02,
 	position = {0,-5,0},
 	Model[[models/skydome.ive]],
 }
 
 local ground = CenterTransformAtPosition(Transform{
-	scale = 10,
+	scale = 50,
 	Model[[models/grass.ive]],
-},{0,-.09,0})
+},{0,-0.25,0})
 
 enableDrawing()
 
-RelativeTo.World:addChild(skydome)
-RelativeTo.World:addChild(ground)
-RelativeTo.World:addChild(RoomModel)
+env = Transform{
+	position = {-20,0,0},
+	skydome,
+	ground,
+	RoomModel,
+}
+
+RelativeTo.World:addChild(env)
+-- RelativeTo.World:addChild(ground)
+-- RelativeTo.World:addChild(RoomModel)
